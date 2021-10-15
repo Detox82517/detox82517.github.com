@@ -10,3 +10,158 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 @import "{{ site.theme }}";
 
 /* append your custom style below */
+
+
+// Learn about this solution to creating custom select styles:
+// @link https://moderncss.dev/custom-css-styles-for-form-inputs-and-textareas/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --input-border: #8b8a8b;
+  --input-focus-h: 245;
+  --input-focus-s: 100%;
+  --input-focus-l: 42%;
+}
+
+.input {
+  font-size: 14px;
+  //Capitalized to prevent Sass
+  // thinking it's the Sass max()
+  font-size: Max(14px, 1em);
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #fff;
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
+  transition: 180ms box-shadow ease-in-out;
+}
+
+.input:focus {
+  border-color: hsl(
+    var(--input-focus-h),
+    var(--input-focus-s),
+    var(--input-focus-l)
+  );
+  box-shadow: 0 0 0 3px
+    hsla(
+      var(--input-focus-h),
+      var(--input-focus-s),
+      calc(var(--input-focus-l) + 40%),
+      0.8
+    );
+  outline: 3px solid transparent;
+}
+
+.input:not(textarea) {
+  line-height: 1.5;
+  height: 2.25rem;
+}
+
+input[type="file"] {
+  font-size: 0.9em;
+  padding-top: 0.35rem;
+}
+
+textarea.input {
+  resize: none;
+  height: 22rem;
+  width: 13rem;
+  background-color: #2B3544;
+  overflow: auto;
+
+}
+
+.input[readonly] {
+  border-style: dotted;
+  cursor: not-allowed;
+  color: #777;
+}
+
+.input[disabled] {
+  --input-border: #ccc;
+
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.input + label {
+  margin-top: 2rem;
+}
+
+
+html {
+    align-items: center;
+    background-color: #2A2F3A;
+    color: #ffffff;
+    display: flex;
+    font: 18px/1 "FiraCode Nerd Font";
+    height: 100%;
+    justify-content: center;
+}
+
+body {
+    background-color: #252A33;
+    box-shadow: 0px 0px 9px #181a1bc9;
+    border-radius: 6px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 15ch;
+    min-width: 30px;
+    padding: 3em;
+}
+
+p {
+    margin: 0;
+}
+
+p span {
+    color: #8E4E58;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:focus,
+a:hover {
+    font-weight: normal;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    column-gap: 2em;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 1em 0;
+}
+
+
+p #cursor {
+    background-color: #E3A74D;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 0; }
+    49% { opacity: 0; }
+    50% { opacity: 1; }
+}
